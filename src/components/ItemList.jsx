@@ -15,7 +15,7 @@ export default class ItemList extends Component {
   buildItemList(items) {
     let itemList = []
     items.forEach(function(item) {
-      itemList.push(<ItemEntry key={item.name} name={item.name} nextDropDate={item.nextDropDate} />)
+      itemList.push(<ItemEntry key={item.name} name={item.name} location={item.location} nextDropDate={item.nextDropDate} />)
     })
 
     return itemList
@@ -27,7 +27,8 @@ export default class ItemList extends Component {
         <thead>
           <tr>
             <th>item name</th>
-            <th>next drop date</th>
+            <th>next double-drop date</th>
+            <th>location</th>
           </tr>
         </thead>
         <tbody>

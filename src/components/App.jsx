@@ -14,26 +14,26 @@ export default class App extends React.Component {
       cycleLength: cycleLength,
       currentDay: now.diff(dayZero, 'days') % cycleLength,
       dropDays: [
-        {name: 'gungnir', dropDay: 3, nextDropDate: ''},
-        {name: 'gaebolg', dropDay: 12, nextDropDate: ''},
-        {name: 'masamune', dropDay: 0, nextDropDate: ''},
-        {name: 'apollo', dropDay: 0, nextDropDate: ''},
-        {name: 'asclepius', dropDay: 6, nextDropDate: ''},
-        {name: 'excalibur', dropDay: 12, nextDropDate: ''},
-        {name: 'flameofindra', dropDay: 9, nextDropDate: ''},
-        {name: 'vajra', dropDay: 6, nextDropDate: ''},
+        {name: 'Gungnir', dropDay: 3, location: '10-10', nextDropDate: ''},
+        {name: 'Gae Bolg', dropDay: 12, location: '8-10', nextDropDate: ''},
+        {name: 'Masamune', dropDay: 0, location: '14-10', nextDropDate: ''},
+        {name: 'Apollo', dropDay: 0, location: '19-10', nextDropDate: ''},
+        {name: 'Asclepius', dropDay: 6, location: '16-10', nextDropDate: ''},
+        {name: 'Excalibur', dropDay: 12, location: '18-10', nextDropDate: ''},
+        {name: 'Flame of Indra', dropDay: 9, location: '12-2', nextDropDate: ''},
+        {name: 'Vajra', dropDay: 6, location: '11-10', nextDropDate: ''},
       ]
     }
   }
 
   componentWillMount() {
     let dropDerps = this.state.dropDays.map(item => {
-        return {name:item.name, dropDay: item.dropDay, nextDropDate: this.getNextDropDay(item.dropDay, this.state.currentDay, this.state.cycleLength)}
+        return {name:item.name, location:item.location, dropDay: item.dropDay, nextDropDate: this.getNextDropDay(item.dropDay, this.state.currentDay, this.state.cycleLength)}
     })
 
     this.setState({
       nextDropDates: dropDerps.sort(this.sortItemsByDropDate)
-    }, function(){console.dir(this.state)})
+    })
   }
 
   sortItemsByDropDate(a, b) {
@@ -51,8 +51,6 @@ export default class App extends React.Component {
     let day = currentDay
     let loops = 0
     let today = moment()
-    console.log('dropDay: '+ dropDay + ', currentDay: ' + currentDay + ', cycleLength: ' + cycleLength)
-    console.log(today.format('MMM DD YYYY'))
     while(loops < 2) {
       if(day > cycleLength) {
         day = 0
@@ -61,8 +59,6 @@ export default class App extends React.Component {
 
       if(dropDay == day) {
         let summed = ((cycleLength * loops) - currentDay) + day
-        console.log('multiplier of loops=' + loops)
-        console.log('adding ' + summed + ' days')
         return today.add(((cycleLength * loops) - currentDay) + day, 'days')
       } else {
         day = day + 1
@@ -72,11 +68,20 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
-        Today's date: {this.state.now.format('MMM DD YYYY')}<br />
-        Today is day { this.state.currentDay } of 15
+      <div className='pure-g'>
+        <div className="pure-u-1-2">
+          <h1>Church of Guch</h1>
+        </div>
+        <div className="pure-u-1-2">
+          <p>
+          Today's date: {this.state.now.format('MMM DD YYYY')}<br />
+          Today is day { this.state.currentDay } of 15
+          </p>
+        </div>
+        <div className="pure-u-1-2">
         <h2>Job Items</h2>
         <ItemList items={this.state.nextDropDates}/>
+        </div>
       </div>
     )
   }
