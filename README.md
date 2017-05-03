@@ -1,6 +1,8 @@
 A scheduler for Mistwalker's Terra Battle mobile game.
 
-##Changelog
+Changelog
+=========
+
 **v0.2**
 Add next open dates / times for MZ7, MZ7K, MZ6, MZ6K.
 
