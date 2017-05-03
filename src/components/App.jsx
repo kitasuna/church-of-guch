@@ -66,10 +66,10 @@ export default class App extends React.Component {
 		lookupTable[9][17] = MZ_KING
 	
 		let nextOpen = []
-		nextOpen['mz7k'] = moment().add(this.getNextKing(lookupTable, 7, this.state.currentDayMz, this.state.now.hour()), "hours").startOf("hour")
-		nextOpen['mz7'] = moment().add(this.getNextOpen(lookupTable, 7, this.state.currentDayMz, this.state.now.hour()), "hours").startOf("hour")
-		nextOpen['mz6k'] = moment().add(this.getNextKing(lookupTable, 6, this.state.currentDayMz, this.state.now.hour()), "hours").startOf("hour")
-		nextOpen['mz6'] = moment().add(this.getNextOpen(lookupTable, 6, this.state.currentDayMz, this.state.now.hour()), "hours").startOf("hour")
+		nextOpen['mz 7 king'] = moment().add(this.getNextKing(lookupTable, 7, this.state.currentDayMz, this.state.now.hour()), "hours").startOf("hour")
+		nextOpen['mz 7'] = moment().add(this.getNextOpen(lookupTable, 7, this.state.currentDayMz, this.state.now.hour()), "hours").startOf("hour")
+		nextOpen['mz 6 king'] = moment().add(this.getNextKing(lookupTable, 6, this.state.currentDayMz, this.state.now.hour()), "hours").startOf("hour")
+		nextOpen['mz 6'] = moment().add(this.getNextOpen(lookupTable, 6, this.state.currentDayMz, this.state.now.hour()), "hours").startOf("hour")
 
     this.setState({
       nextDropDates: dropDates.sort(this.sortItemsByDropDate),
@@ -198,19 +198,19 @@ export default class App extends React.Component {
 							<tbody>
 								<tr>
 									<td>mz 7 king</td>
-									<td>{ this.friendlyToday(this.state.nextOpen['mz7k'], true) }</td>
+									<td>{ this.friendlyToday(this.state.nextOpen['mz 7 king'], true) }</td>
 								</tr>
 								<tr>
 									<td>mz 7</td>
-									<td>{ this.friendlyToday(this.state.nextOpen['mz7'], true) }</td>
+									<td>{ this.friendlyToday(this.state.nextOpen['mz 7'], true) }</td>
 								</tr>
 								<tr>
 									<td>mz 6 king</td>
-									<td>{ this.friendlyToday(this.state.nextOpen['mz6k'], true) }</td>
+									<td>{ this.friendlyToday(this.state.nextOpen['mz 6 king'], true) }</td>
 								</tr>
 								<tr>
 									<td>mz 6</td>
-									<td>{ this.friendlyToday(this.state.nextOpen['mz6'], true) }</td>
+									<td>{ this.friendlyToday(this.state.nextOpen['mz 6'], true) }</td>
 								</tr>
 							</tbody>
 						</table>
