@@ -90,8 +90,6 @@ export default class App extends React.Component {
 	getNextKing(lookupTable, zone, day, hour) {
 		let counter = 0
 		while(counter < 48) {
-			counter++;
-			hour++;
 			if(hour > 23) {
 				hour = 0
 				day += 1
@@ -103,6 +101,8 @@ export default class App extends React.Component {
 			if(lookupTable[((day + zone - 1) % 10)][hour] === MZ_KING) {
 				return counter
 			}
+			counter++;
+			hour++;
 		}
 		return -1
 	}
@@ -148,11 +148,16 @@ export default class App extends React.Component {
 
 	friendlyToday(date1, includeTime = false) {
 		let dateFormatted = ''
-		let now = moment()
+		let now = moment().startOf('hour')
 		if(date1.format('MMM DD YYYY') == now.format('MMM DD YYYY')) {
 			dateFormatted = 'Today'	
 			if(includeTime === true) {
-				dateFormatted = dateFormatted.concat(date1.format(', HH:mm'))
+				console.log(date1.startOf('hour'))
+				if(date1.isSame(now)) {
+					dateFormatted += ', NOW!'
+				} else {
+					dateFormatted = dateFormatted.concat(date1.format(', HH:mm'))
+				}
 			}
 		} else {
 			if(includeTime === true) {
