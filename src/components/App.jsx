@@ -110,8 +110,6 @@ export default class App extends React.Component {
 	getNextOpen(lookupTable, zone, day, hour) {
 		let counter = 0
 		while(counter < 48) {
-			counter++;
-			hour++;
 			if(hour > 23) {
 				hour = 0
 				day += 1
@@ -123,6 +121,8 @@ export default class App extends React.Component {
 			if(lookupTable[((day + zone - 1) % 10)][hour] === MZ_OPEN) {
 				return counter
 			}
+			counter++;
+			hour++;
 		}
 		return -1
 	}
